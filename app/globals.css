@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  --background: #121714;
+  --foreground: #e8efe6;
+  --branche-leaf: #6b7f5e;
+  --branche-leaf-deep: #3d4f3a;
+  --branche-ink: #0e1210;
+  --branche-panel: #1a221c;
+  --branche-muted: #8a9688;
+  --branche-cream: #d8d2c4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.font-brand {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+.font-script {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.stone-bg {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 0%, rgba(107, 127, 94, 0.14), transparent 55%),
+    linear-gradient(168deg, #141a16 0%, #0e1210 48%, #121714 100%);
+}
+
+.stone-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("/brand/forest-leaves.png?v=2");
+  background-size: cover;
+  background-position: center top;
+  filter: saturate(0.85) brightness(0.55);
+}
+
+.stone-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 18, 16, 0.55) 0%,
+    rgba(14, 18, 16, 0.78) 40%,
+    rgba(14, 18, 16, 0.92) 100%
+  );
+}
+
+.overlay-gradient {
+  height: 45%;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+@keyframes card-shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+.card-loading-shimmer {
+  background: linear-gradient(
+    105deg,
+    #1a221c 0%,
+    #243028 35%,
+    #2c3830 50%,
+    #243028 65%,
+    #1a221c 100%
+  );
+  background-size: 240% 100%;
+  animation: card-shimmer 2.2s ease-in-out infinite;
+}
+
+@keyframes leaf-drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+
+.leaf-float {
+  animation: leaf-drift 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-loading-shimmer {
+    animation: none;
+    background: #1f2922;
+  }
+  .leaf-float {
+    animation: none;
+  }
+}
